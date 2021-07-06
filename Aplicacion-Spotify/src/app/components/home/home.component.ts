@@ -8,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+
+    this.http.get('https://restcountries.eu/rest/v2/lang/es')
+
+   }
 
   ngOnInit(): void {
   }
