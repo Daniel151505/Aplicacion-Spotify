@@ -15,7 +15,7 @@ nuevasCanciones: any[] = []
 
     this.spotify.getNewRealeases()
       .subscribe( (data : any) => {
-        this.nuevasCanciones = data.albums.items
+        this.nuevasCanciones = data
       })
 
    }
