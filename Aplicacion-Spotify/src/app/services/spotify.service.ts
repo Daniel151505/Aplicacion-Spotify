@@ -18,28 +18,20 @@ export class SpotifyService {
       'Authorization' : 'Bearer BQCyPTLUUwEEgEouNwEyN0VCFqTqUZ-9ccgpPpvaGaJiEiAxktCyUZgBe5dh2Ob9eInsuADnONtdIzrV3uY'
     })
 
+    return this.http.get(url , {headers})
+
   }
 
   getNewRealeases() {
 
-    const headers = new HttpHeaders({
-      'Authorization' : 'Bearer BQCyPTLUUwEEgEouNwEyN0VCFqTqUZ-9ccgpPpvaGaJiEiAxktCyUZgBe5dh2Ob9eInsuADnONtdIzrV3uY'
-    })
-
-    return this.http.get('https://api.spotify.com/v1/browse/new-releases', { headers })
-          .pipe( map((data:any) =>{
-            return data.albums.items
-          }) )
+    return this.getQuery('browse/new-releases')
+               .pipe( map((data: any) => data.albums.items))
   }
 
-  getArtista(termino: string) {
+  getArtista( termino: string ) {
 
-    const headers = new HttpHeaders({
-      'Authorization' : 'Bearer BQCyPTLUUwEEgEouNwEyN0VCFqTqUZ-9ccgpPpvaGaJiEiAxktCyUZgBe5dh2Ob9eInsuADnONtdIzrV3uY'
-    })
-
-  return this.http.get(`https://api.spotify.com/v1/search?query=${ termino }&type=artist&offset=5&limit=15`, { headers })
-          .pipe( map((data: any)=>data.artists.items))
+  return this.getQuery(`search?query=${ termino }&type=artist&offset=5&limit=15`)
+              .pipe( map((data: any)=>data.artists.items))
 
   }
 
