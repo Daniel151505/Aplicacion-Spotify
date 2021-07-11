@@ -1,1 +1,16 @@
-<p>tarjetas works!</p>
+
+<div class="text-center">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col" *ngFor="let item of items">
+    <div class="card h-100" >
+      <img [src]="item.images | noimage" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"> {{item.name}} </h5>
+        <span *ngFor="let artista of item.artists" class="badge rounded-pill bg-primary">
+          {{artista.name}}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
