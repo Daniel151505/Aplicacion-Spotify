@@ -9,9 +9,13 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 export class ArtistaComponent implements OnInit {
 
   artista: any = {}
+  loadingArtist: boolean | undefined
 
   constructor(private router: ActivatedRoute,
               private spotify: SpotifyService) {
+
+    this.loadingArtist = true
+
     this.router.params.subscribe(params =>{
       this.getArtista(params ['id'])
     })
@@ -22,9 +26,15 @@ export class ArtistaComponent implements OnInit {
 
   getArtista(id: string) {
 
+    this.loadingArtist = true
+
     this.spotify.getArtista(id)
-        .subscribe(artista =>{
-          this.artista = artista
+        .subscribe((artista:any) =>
+          {
+            setTimeout(() => {
+              this.artista = artista
+              this.loadingArtist = false
+            }, 2000);
         })
 
   }
